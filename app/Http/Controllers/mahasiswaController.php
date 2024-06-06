@@ -61,6 +61,7 @@ class mahasiswaController extends Controller
             'nama.required' => 'Nama wajib diisi',
             'jurusan.required' => 'Jurusan wajib diisi',
         ]);
+        
         $data = [
             'nim' => $request->nim,
             'nama' => $request->nama,
@@ -89,6 +90,7 @@ class mahasiswaController extends Controller
      */
     public function edit($id)
     {
+
         $data = mahasiswa::where('nim', $id)->first();
         return view('mahasiswa.edit')->with('data', $data);
     }
@@ -117,13 +119,7 @@ class mahasiswaController extends Controller
         return redirect()->to('mahasiswa')->with('success', 'Berhasil melakukan update data');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy ($id)
     {
         mahasiswa::where('nim', $id)->delete();
         return redirect()->to('mahasiswa')->with('success', 'Berhasil melakukan delete data');
